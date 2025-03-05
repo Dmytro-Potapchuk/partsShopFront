@@ -1,7 +1,6 @@
 import axios from "axios";
-import {API_URL} from "../config/apiConfig.ts";
-
-
+import { API_URL } from "../config/apiConfig.ts";
+import { getToken } from "./authService.ts";
 
 export interface Part {
     id: number;
@@ -11,31 +10,49 @@ export interface Part {
     stock: number;
 }
 
-// Получить все запчасти
+// Pobranie tokena dla autoryzacji
+const getAuthHeaders = () => {
+    const token = getToken();
+    return token ? { Authorization: `Bearer ${token}` } : {};
+};
+
+// Pobierz wszystkie części
 export const fetchParts = async () => {
-    const response = await axios.get<Part[]>(API_URL);
+    const response = await axios.get<Part[]>(API_URL, {
+        headers: getAuthHeaders(),
+    });
     return response.data;
 };
 
-// Добавить новую запчасть
+// Dodaj nową część (tylko admin)
 export const addPart = async (part: Omit<Part, "id">) => {
-    const response = await axios.post<Part>(API_URL, part);
+    const response = await axios.post<Part>(API_URL, part, {
+        headers: getAuthHeaders(),
+    });
     return response.data;
 };
 
-// Обновить запчасть
+// Aktualizuj część (tylko admin)
 export const updatePart = async (id: number, updateData: Partial<Part>) => {
-    const response = await axios.put<Part>(`${API_URL}/${id}`, updateData);
+    const response = await axios.put<Part>(`${API_URL}/${id}`, updateData, {
+        headers: getAuthHeaders(),
+    });
     return response.data;
 };
 
-// Удалить запчасть
+// Usuń część (tylko admin)
 export const deletePart = async (id: number) => {
-    await axios.delete(`${API_URL}/${id}`);
+    await axios.delete(`${API_URL}/${id}`, {
+        headers: getAuthHeaders(),
+    });
 };
 
-// Купить запчасть (уменьшает stock)
+// Kup część (klient/admin)
 export const purchasePart = async (id: number, quantity: number) => {
-    const response = await axios.post<Part>(`${API_URL}/${id}/purchase`, { quantity });
+    const response = await axios.post<Part>(
+        `${API_URL}/${id}/purchase`,
+        { quantity },
+        { headers: getAuthHeaders() }
+    );
     return response.data;
 };

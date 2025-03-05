@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PartList from "../components/PartList";
-import PartForm from "../components/PartForm";
+import PartForm from "../components/PartForm.tsx";
 import { Part } from "../services/partsService";
 
 const PartsPage: React.FC = () => {
