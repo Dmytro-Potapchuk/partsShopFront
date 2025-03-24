@@ -1,11 +1,95 @@
 .container {
-    background-color: lightblue;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #1a1a2e, #16213e);
+    position: relative;
+}
+
+.loginBox {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     text-align: center;
+    z-index: 10; /* Ustawienie formularza na wierzchu */
 }
 
-.body {
-    background-color: lightblue;
+.loginBox::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), transparent);
+    border-radius: 20px;
+    opacity: 0.2;
+    z-index: -1; /* Zapewnia, że tło nie blokuje interakcji */
 }
 
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
 
+.inputField {
+    width: 90%;
+    padding: 12px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease;
+    z-index: 20; /* Ustawienie na wierzchu */
+}
+
+.inputField::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.inputField:focus {
+    border: 1px solid #e94560;
+    box-shadow: 0 0 5px #e94560;
+}
+
+.button {
+    width: 100%;
+    padding: 12px;
+    background: #e94560;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    z-index: 20; /* Ustawienie na wierzchu */
+}
+
+.button:hover {
+    background: #d63447;
+}
+
+.link {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.link a {
+    color: #e94560;
+    text-decoration: none;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}

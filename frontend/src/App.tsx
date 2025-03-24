@@ -8,10 +8,14 @@ import { getRole, logout } from "./services/authService";
 const App: React.FC = () => {
     const [role, setRole] = useState<string | null>(getRole());
 
+    // Aktualizacja roli po zmianie w localStorage (np. po logowaniu)
     useEffect(() => {
-        const storedRole = getRole();
-        console.log("Ustawiona rola:", storedRole); // Debugowanie
-        setRole(storedRole);
+        const handleStorageChange = () => {
+            setRole(getRole());
+        };
+
+        window.addEventListener("storage", handleStorageChange);
+        return () => window.removeEventListener("storage", handleStorageChange);
     }, []);
 
     const handleLogout = () => {
@@ -26,7 +30,8 @@ const App: React.FC = () => {
                 {role && <button onClick={handleLogout}>Wyloguj</button>}
 
                 <Routes>
-                    <Route path="/login" element={<Login />} />
+                    {/* Przekazujemy setRole do Login, aby mogło aktualizować stan */}
+                    <Route path="/login" element={<Login setRole={setRole} />} />
 
                     {/* Klient i admin mogą zobaczyć części */}
                     <Route path="/parts" element={role ? <PartsList /> : <Navigate to="/login" />} />
