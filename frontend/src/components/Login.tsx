@@ -3,6 +3,7 @@ import { login } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 import styles from "../components/styles/Login.module.css";
 
+
 interface LoginProps {
     setRole: (role: string | null) => void;
 }
@@ -18,15 +19,16 @@ export const Login: React.FC<LoginProps> = ({ setRole }) => {
             const user = await login(username, password);
             console.log("Zalogowany użytkownik:", user);
 
-            // ✅ Zapisanie roli w localStorage i aktualizacja stanu
+            //  Zapisanie roli w localStorage i aktualizacja stanu
             localStorage.setItem("role", user.role);
             setRole(user.role);
 
-            // ✅ Wysłanie eventu do innych komponentów (np. App.tsx)
+            //  Wysłanie eventu do innych komponentów (np. App.tsx)
             window.dispatchEvent(new Event("storage"));
 
-            // ✅ Przekierowanie użytkownika
+            //  Przekierowanie użytkownika
             navigate(user.role === "admin" ? "/admin" : "/parts");
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
             alert("Błąd logowania, spróbuj ponownie.");
         }
@@ -34,7 +36,7 @@ export const Login: React.FC<LoginProps> = ({ setRole }) => {
 
     return (
         <div>
-            <h1>Car Parts Shop</h1>
+            
             <div className={styles.container}>
                 <div className={styles.loginBox}>
                     <h2>Logowanie</h2>

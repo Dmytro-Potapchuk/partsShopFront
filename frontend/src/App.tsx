@@ -25,30 +25,51 @@ const App: React.FC = () => {
 
     return (
         <Router>
-            <div>
-                <h1>Car Parts Shop</h1>
-                {role && <button onClick={handleLogout}>Wyloguj</button>}
+  <div style={{
+    background: "linear-gradient(to bottom right, #1e1e2f, #0f1123)",
+    minHeight: "100vh",
+    color: "white",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    paddingTop: "40px"
+  }}>
+    <h1 style={{ fontSize: "3rem", marginBottom: "10px" }}>Sklep z częściami samochodowymi</h1>
 
-                <Routes>
-                    {/* Przekazujemy setRole do Login, aby mogło aktualizować stan */}
-                    <Route path="/login" element={<Login setRole={setRole} />} />
+    {role && (
+      <button
+        onClick={handleLogout}
+        style={{
+          background: "#e74c3c",
+          color: "#fff",
+          padding: "8px 16px",
+          borderRadius: "8px",
+          border: "none",
+          cursor: "pointer",
+          marginBottom: "20px"
+        }}
+      >
+        Wyloguj
+      </button>
+    )}
 
-                    {/* Klient i admin mogą zobaczyć części */}
-                    <Route path="/parts" element={role ? <PartsList /> : <Navigate to="/login" />} />
+    <Routes>
+      <Route path="/login" element={<Login setRole={setRole} />} />
+      <Route path="/parts" element={role ? <PartsList /> : <Navigate to="/login" />} />
+      <Route
+        path="/admin"
+        element={role === "admin" ? (
+          <>
+            <PartForm onPartAdded={() => setRole(getRole())} />
+            <PartsList />
+          </>
+        ) : <Navigate to={role ? "/parts" : "/login"} />}
+      />
+      <Route path="*" element={<Navigate to={role ? "/parts" : "/login"} />} />
+    </Routes>
+  </div>
+</Router>
 
-                    {/* Admin może zarządzać częściami */}
-                    <Route path="/admin" element={role === "admin" ? (
-                        <>
-                            <PartForm onPartAdded={() => setRole(getRole())} />
-                            <PartsList />
-                        </>
-                    ) : <Navigate to={role ? "/parts" : "/login"} />} />
-
-                    {/* Domyślne przekierowanie */}
-                    <Route path="*" element={<Navigate to={role ? "/parts" : "/login"} />} />
-                </Routes>
-            </div>
-        </Router>
     );
 };
 

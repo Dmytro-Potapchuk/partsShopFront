@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 50vh;
     background: linear-gradient(to bottom right, #1a1a2e, #16213e);
     position: relative;
 }
