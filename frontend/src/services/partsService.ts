@@ -8,6 +8,7 @@ export interface Part {
     description: string;
     price: number;
     stock: number;
+    imageUrl?: string; // jeśli dodajesz zdjęcia
 }
 
 // Pobranie tokena dla autoryzacji
@@ -23,6 +24,9 @@ export const fetchParts = async () => {
     });
     return response.data;
 };
+
+// Alias dla fetchParts — używany np. w PartList.tsx
+export const getParts = fetchParts;
 
 // Dodaj nową część (tylko admin)
 export const addPart = async (part: Omit<Part, "id">) => {
