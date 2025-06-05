@@ -1,93 +1,86 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 50vh;
-    background: linear-gradient(to bottom right, #1a1a2e, #16213e);
-    position: relative;
-}
+
 
 .loginBox {
-    position: relative;
     width: 100%;
     max-width: 400px;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 35px 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(50px);
+    border-radius: 55px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     text-align: center;
-    z-index: 10; /* Ustawienie formularza na wierzchu */
+    position: relative;
 }
 
 .loginBox::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), transparent);
-    border-radius: 20px;
-    opacity: 0.2;
-    z-index: -1; /* Zapewnia, że tło nie blokuje interakcji */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    border-radius: inherit;
+    z-index: -1;
 }
 
 h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    font-size: 30px;
+    color: #FFFFFF;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .inputField {
-    width: 90%;
-    padding: 12px;
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    width: 80%;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 10px;
-    color: white;
-    font-size: 16px;
+    color: #fff;
+    font-size: 15px;
     outline: none;
-    transition: border 0.3s ease;
-    z-index: 20; /* Ustawienie na wierzchu */
+    transition: 0.3s border, 0.3s background;
 }
 
 .inputField::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .inputField:focus {
     border: 1px solid #e94560;
-    box-shadow: 0 0 5px #e94560;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 6px #e94560bb;
 }
 
 .button {
-    width: 100%;
+    width: 75%;
     padding: 12px;
     background: #e94560;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     color: white;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s ease;
-    z-index: 20; /* Ustawienie na wierzchu */
+    transition: 0.3s background, 0.2s transform;
 }
 
 .button:hover {
     background: #d63447;
+    transform: scale(1.02);
 }
 
 .link {
-    margin-top: 10px;
-    color: rgba(255, 255, 255, 0.8);
+    margin-top: 14px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .link a {
-    color: #e94560;
+    color: #ff607f;
     text-decoration: none;
+    font-weight: 500;
 }
 
 .link a:hover {

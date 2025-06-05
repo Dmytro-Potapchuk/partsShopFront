@@ -5,6 +5,7 @@ import { PartForm } from "./components/PartForm";
 import { PartsList } from "./components/PartList";
 import { getRole, logout } from "./services/authService";
 
+
 const App: React.FC = () => {
     const [role, setRole] = useState<string | null>(getRole());
 
@@ -34,7 +35,21 @@ const App: React.FC = () => {
     alignItems: "center",
     paddingTop: "40px"
   }}>
-    <h1 style={{ fontSize: "3rem", marginBottom: "10px" }}>Sklep z częściami samochodowymi</h1>
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      marginBottom: "20px"
+    }}>
+      <img
+        src="/logo.png"
+        alt="Logo sklepu"
+        style={{ width: "250px", height: "250px", objectFit: "contain" }}
+      />
+      <h1 style={{ fontSize: "3.5rem", margin: 0 }}>
+        Sklep z częściami samochodowymi
+      </h1>
+    </div>
 
     {role && (
       <button

@@ -7,8 +7,8 @@ interface PartFormProps {
 export const PartForm: React.FC<PartFormProps> = ({ onPartAdded }) => {
   return (
     <div>
-      <h2>Dodaj część</h2>
-      <button onClick={onPartAdded}>Dodaj (symulacja)</button>
+      <h2>Dodaj   </h2>
+      <button onClick={onPartAdded}>Dodaj</button>
     </div>
   );
 };
