@@ -4,3 +4,12 @@ body {
   padding: 0;
   background: #0f2027;
 }
+body.dark {
+  background: linear-gradient(to bottom right, #1e1e2f, #0f1123);
+  color: white;
+}
+
+body.light {
+  background: #f4f4f4;
+  color: #111;
+}
