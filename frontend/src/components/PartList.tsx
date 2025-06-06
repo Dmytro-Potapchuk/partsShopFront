@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getParts } from "../services/partsService";
+import { CheckoutButton } from "../components/CheckoutButton";
 
 interface Part {
   id: number;
@@ -25,7 +26,15 @@ export const PartsList: React.FC = () => {
   }, []);
 
   const addToCart = (part: Part) => {
-    setCart((prev) => [...prev, part]);
+    if (part.stock > 0) {
+      setCart((prev) => [...prev, part]);
+    } else {
+      alert("Ten produkt jest niedostępny.");
+    }
+  };
+
+  const removeFromCart = (index: number) => {
+    setCart((prev) => prev.filter((_, i) => i !== index));
   };
 
   const filteredParts = parts.filter((part) =>
@@ -38,6 +47,8 @@ export const PartsList: React.FC = () => {
     if (sortBy === "priceDesc") return b.price - a.price;
     return 0;
   });
+
+  const totalPrice = cart.reduce((sum, item) => sum + Number(item.price), 0);
 
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
@@ -86,17 +97,23 @@ export const PartsList: React.FC = () => {
           <div style={{ flex: 1 }}>
             <h3 style={{ margin: 0 }}>{part.name}</h3>
             <p style={{ margin: "4px 0" }}>{part.description}</p>
-            <strong>{Number(part.price).toFixed(2)} zł</strong>
+            <div style={{ marginTop: "6px" }}>
+              <strong>{Number(part.price).toFixed(2)} zł</strong>
+              <span style={{ marginLeft: "10px", color: "#aaa" }}>
+                ({part.stock} szt. w magazynie)
+              </span>
+            </div>
           </div>
           <button
             onClick={() => addToCart(part)}
+            disabled={part.stock === 0}
             style={{
               padding: "8px 12px",
               borderRadius: "6px",
-              background: "#3498db",
+              background: part.stock === 0 ? "#ccc" : "#3498db",
               color: "white",
               border: "none",
-              cursor: "pointer",
+              cursor: part.stock === 0 ? "not-allowed" : "pointer",
             }}
           >
             Dodaj do koszyka
@@ -107,14 +124,30 @@ export const PartsList: React.FC = () => {
       {cart.length > 0 && (
         <div style={{ marginTop: "40px", borderTop: "1px solid #999", paddingTop: "20px" }}>
           <h3>Koszyk</h3>
-          <ul>
+          <ul style={{ listStyle: "none", paddingLeft: 0 }}>
             {cart.map((item, index) => (
-              <li key={index}>{item.name} - {item.price.toFixed(2)} zł</li>
+              <li key={index} style={{ marginBottom: "8px", display: "flex", justifyContent: "space-between" }}>
+                <span>{item.name} - {Number(item.price).toFixed(2)} zł</span>
+                <button
+                  onClick={() => removeFromCart(index)}
+                  style={{
+                    background: "#e74c3c",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "6px",
+                    padding: "4px 8px",
+                    cursor: "pointer"
+                  }}
+                >
+                  Usuń
+                </button>
+              </li>
             ))}
           </ul>
-          <strong>
-            Razem: {cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)} zł
-          </strong>
+
+          <strong>Razem: {totalPrice.toFixed(2)} zł</strong>
+
+          <CheckoutButton amount={totalPrice} email="gaskazimierz@gmail.com" />
         </div>
       )}
     </div>
