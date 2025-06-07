@@ -19,33 +19,29 @@ Aplikacja frontendowa dla sklepu z częściami samochodowymi. Umożliwia użytko
 ## Struktura katalogów
 
 front/
-├── frontend/ # Główna aplikacja React
-│ ├── 
-public/ # Pliki publiczne (favicon, itd.)
-│ ├── 
-src/ # Źródła aplikacji
-│ ├── 
-index.html # Główny plik HTML
-│ ├── 
-vite.config.ts # Konfiguracja Vite
-│ └── ... # Pozostałe pliki konfiguracyjne
+-** frontend/ # Główna aplikacja React
+-** ./public pliki # publiczne favicon itd
+-** ./src Źródła # aplikacji
+-** ./index.html # Główny plik HTML
+-** ./vite.config.ts # Konfiguracja Vite
+
 
 ## Uruchamianie
 
-bash
-cd frontend
-npm install
-npm run dev
+-**bash**
+-**cd frontend**
+-**npm install**
+-**npm run dev**
 
 ## Aplikacja będzie dostępna pod adresem http://localhost:5173.
 
 ## Funkcje
-Rejestracja i logowanie użytkownika
-Przeglądanie katalogu części
-Wyszukiwanie części po nazwie
-Sortowanie (np. A-Z, cena)
-Filtrowanie wyników i paginacja
-Możliwość zakupu (przycisk „Kup”)
-Walidacja pól formularzy
-Responsywny i nowoczesny interfejs (ciemny motyw)
+-Rejestracja i logowanie użytkownika
+-Przeglądanie katalogu części
+-Wyszukiwanie części po nazwie
+-Sortowanie (np. A-Z, cena)
+-Filtrowanie wyników i paginacja
+-Możliwość zakupu (przycisk „Kup”)
+-Walidacja pól formularzy
+-Responsywny i nowoczesny interfejs (ciemny motyw)
 
