@@ -20,20 +20,24 @@ Aplikacja frontendowa dla sklepu z częściami samochodowymi. Umożliwia użytko
 
 front/
 ├── frontend/ # Główna aplikacja React
-│ ├── public/ # Pliki publiczne (favicon, itd.)
-│ ├── src/ # Źródła aplikacji
-│ ├── index.html # Główny plik HTML
-│ ├── vite.config.ts # Konfiguracja Vite
+│ ├── 
+public/ # Pliki publiczne (favicon, itd.)
+│ ├── 
+src/ # Źródła aplikacji
+│ ├── 
+index.html # Główny plik HTML
+│ ├── 
+vite.config.ts # Konfiguracja Vite
 │ └── ... # Pozostałe pliki konfiguracyjne
 
 ## Uruchamianie
 
-```bash
+bash
 cd frontend
 npm install
 npm run dev
 
-Aplikacja będzie dostępna pod adresem http://localhost:5173.
+## Aplikacja będzie dostępna pod adresem http://localhost:5173.
 
 ## Funkcje
 Rejestracja i logowanie użytkownika
